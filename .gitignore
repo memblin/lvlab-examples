@@ -166,4 +166,5 @@ venvs/**
 salt/salt-ssh.log
 salt/etc/**
 ansible/tmp/**
-ansible/.tmp/** */
+ansible/.tmp/**
+ansible/galaxy_cache/**
