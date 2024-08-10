@@ -22,4 +22,3 @@ module_dirs:
 pillar_roots:
   base:
     - /home/crow/repos/github/memblin/lvlab-examples/salt/srv/pillar
-

@@ -1,0 +1,7 @@
+---
+- name: Import Salt Controllers playbook
+  ansible.builtin.import_playbook: salt_controllers.yml
+- name: Import Vault playbook
+  ansible.builtin.import_playbook: vault_servers.yml
+- name: Import Webservers playbook
+  ansible.builtin.import_playbook: webservers.yml

@@ -1,0 +1,22 @@
+---
+- name: Read variables from first file found using 'vars/' relative subdirectory
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - '{{ ansible_distribution }}.yml'
+      paths:
+        - 'vars'
+  tags: common
+
+- name: Run apt update (Debian / Ubuntu)
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+  when: ansible_distribution in ['Debian', 'Ubuntu']
+  tags: common
+
+- name: Installing common packages
+  ansible.builtin.package:
+    name: "{{ common_packages }}"
+    state: present
+  tags: common

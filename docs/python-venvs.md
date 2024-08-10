@@ -47,7 +47,7 @@ source ./venvs/lvlab-ansible/bin/activate
 pip install --upgrade pip
 
 # Install ansible-core 2.17.2 (Latest)
-pip install ansible-core==2.17.2
+pip install ansible-core==2.17.2 ansible-lint==24.7.0 pre-commit
 
 # To exit the virtual environment
 deactivate
