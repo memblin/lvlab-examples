@@ -25,21 +25,9 @@ lvlab up nginx.local
 - Run ansible adhoc commands and playbooks against these machines
 
 ```bash
-# Ping the minions
-salt-ssh \* test.ping
+# Adhoc commands
+ansible all -m ansible.builtin.shell -a 'hostname -f'
 
-# Show pillar.items
-salt-ssh salt.local pillar.items
-
-# Show state.show_top
-salt-ssh salt.local state.show_top
-
-# Run a highstate in test mode
-salt-ssh salt.local state.highstate test=true
-
-# Run for effect
-salt-ssh salt.local state.highstate
-
-# Apply a specific state
-salt-ssh salt.local state.apply common
+# Playbooks
+ansible-playbook 
 ```
