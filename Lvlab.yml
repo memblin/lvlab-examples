@@ -13,16 +13,16 @@ environment:
     # libvirt_uri:
     # qemu:///system is the "root" session of libvirt and with most default
     # libvirt installs requires a non-root user to be a member of the libvirt
-    # group to use it without sudo. 
+    # group to use it without sudo.
     #
     # qemu:///session is the rootless user session. Sometimes good enough but
     # can suffer from network performance issues in some testing scenarios.
     libvirt_uri: qemu:///system
     #
-    # config_defaults: 
+    # config_defaults:
     #   This configuration object will be merged into other configuration
     #   objects, such as the machine object, to fill in missing but required
-    #   variable values. This allows one to be a little more breif when 
+    #   variable values. This allows one to be a little more breif when
     #   defining similar machines.
     config_defaults:
       domain: local
@@ -34,14 +34,14 @@ environment:
           size: 25G
       # Each interface on a machine merges with these default settings
       interfaces:
-          #
-          # network:
-          #   The network configuration element is the name of the libvirt
-          #   network to use for the interface when creating the machine.
-          network: default
-          nameservers:
-            search: [local]
-            addresses: [192.168.122.1]
+        #
+        # network:
+        #   The network configuration element is the name of the libvirt
+        #   network to use for the interface when creating the machine.
+        network: default
+        nameservers:
+          search: [local]
+          addresses: [192.168.122.1]
       # To Run rootless using qemu:///system wieth libvirt group membership
       # these directories need to be writable by your user.
       #
@@ -57,7 +57,7 @@ environment:
         - source: /home/crow/repos
           mount_tag: gitrepos
       # cloud_init setting to be merged with each machines cloud-init settings
-      cloud_init:  
+      cloud_init:
         user: root
         pubkey: ~/.ssh/id_ed25519.pub
         sudo: ["ALL=(ALL) NOPASSWD:ALL"]
@@ -112,7 +112,7 @@ environment:
             ip4: 192.168.122.18/24
             ip4gw: 192.168.122.1
       # A machine with an interface but no ip4 will get a DHCP addrss if the
-      # selected Libvirt network supports DHCP. 
+      # selected Libvirt network supports DHCP.
       - vm_name: dhcpconfig.local
         hostname: dhcpconfig
         os: debian12
@@ -149,7 +149,7 @@ images:
     checksum_type: sha512
     network_version: 2
   debian11:
-    image_url: https://cloud.debian.org/images/cloud/bullseye/20240717-1811/debian-11-generic-amd64-20240717-1811.qcow2 
+    image_url: https://cloud.debian.org/images/cloud/bullseye/20240717-1811/debian-11-generic-amd64-20240717-1811.qcow2
     checksum_url: https://cloud.debian.org/images/cloud/bullseye/20240717-1811/SHA512SUMS
     checksum_type: sha512
     network_version: 1

@@ -29,5 +29,5 @@ lvlab up nginx.local
 ansible all -m ansible.builtin.shell -a 'hostname -f'
 
 # Playbooks
-ansible-playbook 
+ansible-playbook
 ```

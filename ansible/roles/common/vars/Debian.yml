@@ -1,0 +1,10 @@
+---
+common_packages:
+  - curl
+  - wget
+  - jq
+  - iptables
+  - ipset
+  - python3-all
+  - python3-pip
+  - python3-venv
