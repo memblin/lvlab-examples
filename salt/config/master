@@ -1,0 +1,25 @@
+roster_defaults:
+  user: root
+  sudo: False
+  priv: ~/.ssh/id_ed25519
+  tty: True
+  # Relax SSH pubkey issues since we're working in
+  # examples and local development environments.
+  ssh_options:
+    - StrictHostKeyChecking=no
+
+file_client: local
+
+# These paths appear to need to be full paths
+root_dir: /home/crow/repos/github/memblin/lvlab-examples/salt
+file_roots:
+  base:
+    - /home/crow/repos/github/memblin/lvlab-examples/salt/srv/salt
+
+module_dirs:
+  - /home/crow/repos/github/memblin/lvlab-examples/salt/srv/salt
+
+pillar_roots:
+  base:
+    - /home/crow/repos/github/memblin/lvlab-examples/salt/srv/pillar
+

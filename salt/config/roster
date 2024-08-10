@@ -1,0 +1,8 @@
+salt.local:
+  host: 192.168.122.12
+
+vault.local:
+  host: 192.168.122.16
+
+nginx.local:
+  host: 192.168.122.18

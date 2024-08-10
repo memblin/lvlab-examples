@@ -1,0 +1,13 @@
+salt-ssh:
+  config_dir: salt/config
+  ssh_log_file: salt/salt-ssh.log
+  ssh_max_procs: 30
+  ssh_wipe: True
+
+  # Some formulas that use includes behave poorly with the current salt-ssh default
+  # caching mechanisms used to build the thin state directory used to target the minion.
+  # If your formula complains about missing files try adding them here under.
+  #extra_filerefs:
+  #  - salt://nginx/files
+  #  - salt://nginx/map.jinja
+  #  - salt://nginx/default.yml
