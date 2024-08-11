@@ -38,3 +38,15 @@ This is also how I get the IP form a machine I define using DHCP. In a futre
 feature the DHCP assigned addresses should be reported on the status page
 for any running machine that has the qemu-guest-agent available to report the
 data.
+
+### lvlab shell autocomplete
+
+Enables completion of commands, not vm names yet.
+
+```bash
+# Write the click shell completion for bash to a file
+_LVLAB_COMPLETE=bash_source lvlab > .lvlab-complete.bash
+
+# Add that file to your ~/.bashrc
+. ~/.lvlab-complete.bash
+```
