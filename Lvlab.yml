@@ -93,15 +93,18 @@ environment:
         # now. A feature will be added to allow configuring multiple
         # NICs once we have a more stable application.
         interfaces:
+          # The interface name/id should match what the OS will generate
+          # for the interface. The value here does not dictate what the
+          # interface is name but what interface to look for to configure.
           - name: enp1s0
             # IP addressing is handled via cloud-init
             ip4: 192.168.122.12/24
             ip4gw: 192.168.122.1
       - vm_name: vault.local
         hostname: vault
-        os: debian12
+        os: fedora40
         interfaces:
-          - name: enp1s0
+          - name: eth0
             ip4: 192.168.122.16/24
             ip4gw: 192.168.122.1
       - vm_name: nginx.local
