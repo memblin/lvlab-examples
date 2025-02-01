@@ -92,6 +92,10 @@ environment:
         # hostname: sets the hostname in the cloud-init config for this machine
         hostname: salt
         #
+        ## fqdn: sets the fully qualified domain name to use for this machine
+        # if none is provided {hostname}.{domain} for the machine i sused.
+        fqdn: salt.dev.local
+        #
         # os: sets the OS cloud-image to use when creating the machine
         os: fedora40
         #
@@ -126,26 +130,26 @@ environment:
           runcmd_ignore_defaults: true
           runcmd:
             - curl --insecure https://vault.tkclabs.io:8200/v1/root_ca/ca/pem > /etc/pki/ca-trust/source/anchors/vault.tkclabs.io.crt
-            - curl -s -o /root/bootstrap-salt.sh -L https://bootstrap.saltproject.io
-            - chmod 0755 /root/bootstrap-salt.sh
-            - /root/bootstrap-salt.sh -X -M -A 127.0.0.1 stable 3007
+    #        - curl -s -o /root/bootstrap-salt.sh -L https://bootstrap.saltproject.io
+    #        - chmod 0755 /root/bootstrap-salt.sh
+    #        - /root/bootstrap-salt.sh -X -M -A 127.0.0.1 stable 3007
             # Salt master config customization
             - |
-              cat << EOF > /etc/salt/master.d/cloud_init_master.conf
-              # Auto-accept for the lab
-              auto_accept: True
+    #          cat << EOF > /etc/salt/master.d/cloud_init_master.conf
+    #          # Auto-accept for the lab
+    #          auto_accept: True
 
-              EOF
+    #          EOF
             # Salt minion config customization
             - |
-              cat << EOF > /etc/salt/minion.d/cloud_init_minion.conf
-              # This reduces latency for some salt operations when reverse
-              # DNS is not in place for the machine.
-              enable_fqdns_grains: False
+    #          cat << EOF > /etc/salt/minion.d/cloud_init_minion.conf
+    #          # This reduces latency for some salt operations when reverse
+    #          # DNS is not in place for the machine.
+    #          enable_fqdns_grains: False
 
-              EOF
-            - systemctl enable --now salt-master
-            - systemctl enable --now salt-minion
+    #          EOF
+    #        - systemctl enable --now salt-master
+    #        - systemctl enable --now salt-minion
           # Mounts can be provided per-machine in cloud_init too
           # mounts:
           #   - [gitrepos, /srv/git, virtiofs, "ro,relatime"]
@@ -214,3 +218,17 @@ images:
   NoValidate:
     image_url: https://cloud.debian.org/images/cloud/buster/20240703-1797/debian-10-generic-amd64-20240703-1797.qcow2
     network_version: 1
+  # Custom images should follow a specific naming standard of $(--os-variant value)-$(ImageName)
+  # The ImageName can be free-form but the start of the name must align with a valid --os-variant
+  # value or the virt-install command will fail. See examples below, two debian12 based images
+  # with varied software installed.
+  debian12-salt:
+    image_url: http://192.168.122.1:8080/cloud_images/debian-12-salt-20250121-0215.qcow2
+    network_version: 2
+  debian12-vault:
+    image_url: http://192.168.122.1:8080/cloud_images/debian-12-vault-20250121-0716.qcow2
+    network_version: 2
+  # Multiple versions of an image can be handled the same way as custom images
+  debian12-generic-amd64-20240717-1811:
+    image_url: https://cloud.debian.org/images/cloud/bookworm/20240717-1811/debian-12-generic-amd64-20240717-1811.qcow2
+    network_version: 2
