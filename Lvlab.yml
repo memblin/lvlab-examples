@@ -231,6 +231,6 @@ images:
   # Multiple versions of an image can be handled the same way as custom images (v0.2.3)
   debian12-20250115-1993:
     image_url: https://cdimage.debian.org/images/cloud/bookworm/20250112-1990/debian-12-generic-amd64-20250112-1990.qcow2
-    checksum_url: https://cloud.debian.org/images/cloud/bookworm/20250115-1993/SHA512SUMS
+    checksum_url: https://cloud.debian.org/images/cloud/bookworm/20250112-1990/SHA512SUMS
     checksum_type: sha512
     network_version: 2
